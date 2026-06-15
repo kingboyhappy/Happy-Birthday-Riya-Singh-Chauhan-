@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Riya 🎂</title>
+<style>
+body{
+margin:0;font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#ffd6e7,#ffe8f3);
+color:#333;
+overflow-x:hidden;
+}
+.hero{padding:60px 20px;text-align:center}
+.card{background:#fff;margin:20px auto;padding:25px;max-width:900px;border-radius:20px;box-shadow:0 4px 15px rgba(0,0,0,.1)}
+h1,h2{text-align:center}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.gallery img{width:100%;height:220px;object-fit:cover;border-radius:15px}
+.btn{display:inline-block;padding:12px 20px;background:#ff7eb6;color:white;text-decoration:none;border-radius:12px;border:none;cursor:pointer}
+#secret{display:none}
+.countdown{font-size:1.5rem;font-weight:bold}
+.hearts{position:fixed;inset:0;pointer-events:none}
+.heart{position:absolute;bottom:-20px;animation:float 8s linear infinite}
+@keyframes float{
+from{transform:translateY(0)} to{transform:translateY(-110vh)}
+}
+</style>
+</head>
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<section class="hero">
+<h1>🎂 Happy Birthday Riya Singh Chauhan 🎉</h1>
+<p>For one of the most special people I know 💖</p>
+<div class="countdown" id="countdown"></div>
+<p><a class="btn" href="https://www.youtube.com/results?search_query=Heeriye+Jasleen+Royal+Arijit+Singh" target="_blank">🎵 Play Heeriye</a></p>
+</section>
+
+<div class="card">
+<h2>🌸 How It All Started</h2>
+<p>I still remember the first time I saw you in the department on campus. The first thought in my mind was: “I've never seen someone this innocent before.” Somehow you stood out immediately, and that memory stayed with me.</p>
+</div>
+
+<div class="card">
+<h2>😂 Funny Memories</h2>
+<p>You seemed to have no idea how many things worked around us at first, and somehow that made every conversation funnier. The best part? The same innocent person also claims to be a gangster and a heavy rider. 😄🏍️</p>
+<p>And somehow, you always managed to convince me to talk offline.</p>
+</div>
+
+<div class="card">
+<h2>📸 Our Memories</h2>
+<div class="gallery">
+<img src="photo1.jpg"><img src="photo2.jpg"><img src="photo3.jpg"><img src="photo4.jpg"><img src="photo5.jpg">
+<img src="photo6.jpg"><img src="photo7.jpg"><img src="photo8.jpg"><img src="photo9.jpg"><img src="photo10.jpg">
+</div>
+<p style="text-align:center">Replace photo1.jpg ... photo10.jpg with your photos.</p>
+</div>
+
+<div class="card">
+<h2>⭐ What Makes You Special</h2>
+<p>You're funny, caring, innocent, and somehow make people feel comfortable around you. Never lose that smile and positive energy.</p>
+</div>
+
+<div class="card" style="text-align:center">
+<h2>💌 Secret Message</h2>
+<button class="btn" onclick="document.getElementById('secret').style.display='block'">One Last Thing...</button>
+<div id="secret">
+<p>Sometimes people become important without any big reason. Just a lot of conversations, random memories, and shared laughs. Thank you for being one of those people. Happy Birthday, Riya. ❤️</p>
+</div>
+</div>
+
+<script>
+const birthday = new Date("2027-06-16T00:00:00");
+function updateCountdown(){
+ const now = new Date();
+ const diff = birthday-now;
+ const d = Math.max(0,Math.floor(diff/(1000*60*60*24)));
+ document.getElementById("countdown").innerText = "✨ " + d + " days until the next birthday celebration";
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+const hearts=document.getElementById('hearts');
+for(let i=0;i<25;i++){
+ let h=document.createElement('div');
+ h.className='heart';
+ h.innerHTML='💖';
+ h.style.left=Math.random()*100+'%';
+ h.style.animationDuration=(5+Math.random()*5)+'s';
+ h.style.fontSize=(16+Math.random()*20)+'px';
+ hearts.appendChild(h);
+}
+</script>
+</body>
+</html>
