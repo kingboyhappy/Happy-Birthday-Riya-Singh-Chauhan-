@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✨ Birthday Surprise For Riya ✨</title>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#ffd6e7,#ffe8f3);
+overflow-x:hidden;
+color:#333;
+}
+
+#intro{
+position:fixed;
+inset:0;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:rgba(255,182,193,.95);
+backdrop-filter:blur(12px);
+z-index:9999;
+padding:20px;
+}
+
+#intro h1{font-size:3rem;color:white}
+#intro p{margin:15px 0;color:white;font-size:1.1rem}
+
+.enter-btn{
+padding:15px 30px;
+border:none;
+border-radius:30px;
+background:#ff4f9a;
+color:white;
+font-size:1.1rem;
+cursor:pointer;
+}
+
+.hero{
+padding:100px 20px;
+text-align:center;
+}
+
+.card{
+background:white;
+max-width:950px;
+margin:25px auto;
+padding:25px;
+border-radius:20px;
+box-shadow:0 8px 20px rgba(0,0,0,.1);
+}
+
+h1,h2{text-align:center}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:12px;
+}
+
+.gallery img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:15px;
+}
+
+.countdown{
+font-size:1.6rem;
+font-weight:bold;
+margin-top:10px;
+}
+
+.heart,.petal{
+position:fixed;
+pointer-events:none;
+z-index:1;
+}
+
+.floating-photo{
+position:fixed;
+width:120px;
+height:120px;
+object-fit:cover;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+display:none;
+z-index:10;
+animation:floatPhoto 8s ease-in-out infinite;
+}
+
+.photo-left{left:20px;top:25%}
+.photo-right{right:20px;top:55%;animation-delay:2s}
+
+@keyframes floatPhoto{
+0%{transform:translateY(0) rotate(-3deg)}
+50%{transform:translateY(-30px) rotate(3deg)}
+100%{transform:translateY(0) rotate(-3deg)}
+}
+</style>
+</head>
+<body>
+
+<div id="intro">
+<h1>✨ A Birthday Surprise For Riya ✨</h1>
+<p>Some memories deserve their own little corner on the internet.</p>
+<button class="enter-btn" onclick="enterSite()">💖 Tap To Enter 💖</button>
+</div>
+
+<audio id="bgMusic" loop>
+<source src="tumse.mp3" type="audio/mpeg">
+</audio>
+
+<img src="special1.jpg" class="floating-photo photo-left" id="fp1">
+<img src="special2.jpg" class="floating-photo photo-right" id="fp2">
+
+<section class="hero">
+<h1>🎂 Happy Birthday Riya 🎂</h1>
+<p>For one of the most special people I know ❤️</p>
+<div class="countdown" id="countdown"></div>
+</section>
+
+<div class="card">
+<h2>🌸 First Time I Saw You</h2>
+<p>I still remember seeing you in the department for the first time. There was something incredibly innocent about you that made you stand out instantly.</p>
+</div>
+
+<div class="card">
+<h2>😂 Gangster & Heavy Rider Story</h2>
+<p>The funniest thing is that the most innocent person I know also calls herself a gangster and a heavy rider. That contrast never stops being funny. 😄🏍️</p>
+</div>
+
+<div class="card">
+<h2>☕ Offline Conversations</h2>
+<p>Some of the best memories were not photos, but random offline talks, jokes, and moments that made ordinary days memorable.</p>
+</div>
+
+<div class="card">
+<h2>📸 Memory Gallery</h2>
+<div class="gallery">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+<img src="photo4.jpg">
+<img src="photo5.jpg">
+<img src="photo6.jpg">
+<img src="photo7.jpg">
+<img src="photo8.jpg">
+<img src="photo9.jpg">
+<img src="photo10.jpg">
+</div>
+</div>
+
+<div class="card">
+<h2>💌 Secret Letter</h2>
+<p>
+Dear Riya,<br><br>
+Sometimes the people who become important to us don't arrive with a big announcement.<br><br>
+They simply become part of our everyday life through random conversations, unexpected laughs, and unforgettable memories.<br><br>
+Thank you for being one of those people.<br><br>
+Happy Birthday ❤️
+</p>
+</div>
+
+<div class="card">
+<h2>🎁 Final Birthday Wish</h2>
+<p>
+May your smile always stay bright, your dreams become reality, and your life be filled with happiness.<br>
+Happy Birthday Riya ❤️
+</p>
+</div>
+
+<script>
+function enterSite(){
+document.getElementById("intro").style.display="none";
+
+document.getElementById("bgMusic").play();
+
+document.getElementById("fp1").style.display="block";
+document.getElementById("fp2").style.display="block";
+
+confetti({
+particleCount:500,
+spread:180,
+origin:{y:0.6}
+});
+
+createHearts();
+createPetals();
+}
+
+const birthday=new Date("2027-06-16T00:00:00");
+
+function updateCountdown(){
+const now=new Date();
+const diff=birthday-now;
+const days=Math.max(0,Math.floor(diff/(1000*60*60*24)));
+document.getElementById("countdown").innerHTML="⏳ "+days+" days until the next birthday celebration";
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+function createHearts(){
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"vw";
+h.style.bottom="-20px";
+h.style.fontSize=(15+Math.random()*25)+"px";
+document.body.appendChild(h);
+
+let pos=-20;
+let anim=setInterval(()=>{
+pos+=2;
+h.style.bottom=pos+"px";
+if(pos>window.innerHeight){
+clearInterval(anim);
+h.remove();
+}
+},20);
+},300);
+}
+
+function createPetals(){
+setInterval(()=>{
+let p=document.createElement("div");
+p.className="petal";
+p.innerHTML="🌹";
+p.style.left=Math.random()*100+"vw";
+p.style.top="-20px";
+document.body.appendChild(p);
+
+let y=-20;
+let anim=setInterval(()=>{
+y+=2;
+p.style.top=y+"px";
+if(y>window.innerHeight){
+clearInterval(anim);
+p.remove();
+}
+},20);
+},500);
+}
+</script>
+
+</body>
+</html>
